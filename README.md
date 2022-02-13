@@ -1,6 +1,6 @@
 # Cuplr Wallet
 
-This project was bootstrapped with [`create-react-native-typescript-app`](https://github.com/cobuildlab/create-react-native-typescript-app).
+This project was bootstrapped with [`create-react-native-typescript-app`](https://github.com/cobuildlab/create-react-native-typescript-app) with the help of [`walletconnect-example-dapp`](https://github.com/WalletConnect/walletconnect-example-dapp).
 
 ## 1. Install
 
