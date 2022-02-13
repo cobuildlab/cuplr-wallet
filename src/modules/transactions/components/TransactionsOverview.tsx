@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.lightGray,
   },
   list: {
-    paddingBottom: 100,
+    paddingBottom: 16,
   },
 });
 
@@ -51,6 +51,7 @@ export const TransactionsOverview = ({
         data={transactions}
         renderItem={({ item }) => <TransactionCard transaction={item} />}
         style={styles.list}
+        contentContainerStyle={styles.list}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         keyExtractor={({ transactionIndex }) => transactionIndex}
       />
