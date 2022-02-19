@@ -83,7 +83,7 @@ export const getWalletTransactions = async (
       method: methodName,
       hash: transaction.hash,
       timestamp: transaction.timeStamp,
-      transactionIndex: transaction.transactionIndex,
+      index: transaction.transactionIndex,
     });
   }
 
