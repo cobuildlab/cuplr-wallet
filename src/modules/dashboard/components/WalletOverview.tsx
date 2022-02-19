@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import Web3 from 'web3';
 import { View, Text, StyleSheet } from 'react-native';
 import { theme } from '../../../constants/theme';
 
@@ -33,8 +34,8 @@ export const WalletOverview = ({
       <GradientCard startColor={theme.lightGray} endColor={theme.lightGray}>
         <Text style={styles.wallet}>{wallet?.address}</Text>
         <Text style={styles.balance}>
-          {Number.parseFloat(wallet?.tokens?.[0]?.balance as string).toFixed(8)}{' '}
-          WEI
+          {Web3.utils.fromWei(wallet?.tokens?.[0]?.balance as string, 'ether')}{' '}
+          ETH
         </Text>
       </GradientCard>
     </View>

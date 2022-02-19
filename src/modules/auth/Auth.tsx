@@ -27,7 +27,6 @@ export const Auth = ({ navigation }): ReactElement => {
         index: 0,
         routes: [{ name: 'Root' }],
       });
-
       navigation.dispatch(action);
     }
   }, [connector.connected]);

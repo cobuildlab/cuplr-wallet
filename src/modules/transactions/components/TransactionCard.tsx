@@ -6,6 +6,7 @@ import { getTransactionTimestamp } from '../../../utils/api';
 import { theme } from '../../../constants/theme';
 import { FontAwesome } from '@expo/vector-icons';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
+import Web3 from 'web3';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   valueContainer: {
-    width: '25%',
+    width: '35%',
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   transactionContainer: {
-    width: '60%',
+    width: '50%',
   },
   icon: {
     fontSize: 16,
@@ -84,14 +85,19 @@ export const TransactionCard = ({ transaction }): ReactElement => {
         </View>
         <View style={styles.row}>
           <Text style={styles.timestamp}>
-            {getTransactionTimestamp(transaction.timestamp).toUTCString()}
+            {getTransactionTimestamp(
+              transaction.timestamp,
+            ).toLocaleDateString()}
           </Text>
         </View>
       </View>
       <View style={styles.valueContainer}>
         <Text style={styles.value}>
           {isSending ? '-' : ''}
-          {transaction.value} WEI
+          {Number.parseFloat(
+            Web3.utils.fromWei(transaction.value, 'ether'),
+          ).toFixed(4)}{' '}
+          ETH
         </Text>
       </View>
     </View>
