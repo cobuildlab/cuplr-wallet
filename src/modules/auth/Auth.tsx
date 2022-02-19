@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { SafeAreaView, View, Image, StatusBar, StyleSheet } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
-import { GradientButton } from '../../shared/components/gradient-button/GradientButton';
+import { IconButton } from '../../shared/components/icon-button/IconButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,7 +39,11 @@ export const Auth = ({ navigation }): ReactElement => {
           source={require('../../../assets/images/cplr.png')}
           style={styles.image}
         />
-        <GradientButton onPress={() => connector.connect()} title="Connect" />
+        <IconButton
+          icon={require('../../../assets/images/walletconnect.png')}
+          onPress={() => connector.connect()}
+          title="Use WalletConnect"
+        />
       </View>
     </SafeAreaView>
   );

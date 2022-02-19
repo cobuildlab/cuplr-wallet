@@ -1,5 +1,4 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
-/* eslint-disable */
+/* eslint-disable no-undef */
 import './global';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
