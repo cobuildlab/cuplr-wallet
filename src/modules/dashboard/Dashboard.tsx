@@ -6,7 +6,6 @@ import {
   View,
   ActivityIndicator,
 } from 'react-native';
-import { CommonActions } from '@react-navigation/native';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
 import { WalletOverview } from './components/WalletOverview';
@@ -17,6 +16,7 @@ import { getWalletBalance } from '../../utils/api';
 import { GradientButton } from '../../shared/components/gradient-button/GradientButton';
 import { ActionButtons } from './components/ActionButtons';
 import { IconHeader } from '../../shared/components/icon-header/IconHeader';
+import { useNavigator } from '../../hooks';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
 
 export const Dashboard = ({ navigation }): ReactElement => {
   const connector = useWalletConnect();
+  const navigator = useNavigator(navigation);
+
   const [isLoading, setIsLoading] = useState(true);
   const [wallet, setWallet] = useState<Wallet>({} as Wallet);
 
@@ -53,12 +55,7 @@ export const Dashboard = ({ navigation }): ReactElement => {
     if (connector.connected) {
       loadWallet();
     } else {
-      const action = CommonActions.reset({
-        index: 0,
-        routes: [{ name: 'Auth' }],
-      });
-
-      navigation.dispatch(action);
+      navigator.resetAndNavigateTo('Auth');
     }
   }, [connector.connected]);
 
@@ -80,7 +77,7 @@ export const Dashboard = ({ navigation }): ReactElement => {
       <IconHeader />
       <View style={styles.container}>
         <WalletOverview wallet={wallet} />
-        <ActionButtons onHistory={() => navigation.navigate('Transactions')} />
+        <ActionButtons onHistory={() => navigator.navigate('Transactions')} />
         <GradientButton
           onPress={() => connector.killSession()}
           title="Disconnect wallet"

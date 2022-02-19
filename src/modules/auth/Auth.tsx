@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect } from 'react';
 import { SafeAreaView, View, Image, StatusBar, StyleSheet } from 'react-native';
-import { CommonActions } from '@react-navigation/native';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 import { IconButton } from '../../shared/components/icon-button/IconButton';
+import { useNavigator } from '../../hooks';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,14 +20,11 @@ const styles = StyleSheet.create({
 
 export const Auth = ({ navigation }): ReactElement => {
   const connector = useWalletConnect();
+  const navigator = useNavigator(navigation);
 
   useEffect(() => {
     if (connector.connected) {
-      const action = CommonActions.reset({
-        index: 0,
-        routes: [{ name: 'Root' }],
-      });
-      navigation.dispatch(action);
+      navigator.resetAndNavigateTo('Root');
     }
   }, [connector.connected]);
 
