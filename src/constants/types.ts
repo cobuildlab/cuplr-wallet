@@ -16,5 +16,5 @@ export interface Transaction {
   method: string;
   hash: string;
   timestamp: string;
-  transactionIndex: string;
+  index: string;
 }

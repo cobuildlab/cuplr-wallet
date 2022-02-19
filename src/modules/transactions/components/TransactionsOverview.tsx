@@ -53,7 +53,7 @@ export const TransactionsOverview = ({
         style={styles.list}
         contentContainerStyle={styles.list}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        keyExtractor={({ transactionIndex }) => transactionIndex}
+        keyExtractor={({ hash }) => hash}
       />
     </View>
   );
