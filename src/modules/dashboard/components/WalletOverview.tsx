@@ -1,10 +1,13 @@
 import React, { ReactElement } from 'react';
-import Web3 from 'web3';
 import { View, Text, StyleSheet } from 'react-native';
-import { theme } from '../../../constants/theme';
 
-import { Wallet } from '../../../constants/types';
 import { GradientCard } from '../../../shared/components/gradient-card/GradientCard';
+import { shortenAddress } from '../../../utils/helpers';
+
+import { useMoralisDapp } from '../../../providers/MoralisDappProvider/MoralisDappProvider';
+import { useNativeBalance } from '../../../hooks';
+
+import { theme } from '../../../constants/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,19 +27,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export const WalletOverview = ({
-  wallet,
-}: {
-  wallet: Wallet;
-}): ReactElement => {
+export const WalletOverview = (): ReactElement => {
+  const { chainId, walletAddress } = useMoralisDapp();
+  const { nativeBalance } = useNativeBalance(chainId);
+
   return (
     <View style={styles.container}>
       <GradientCard startColor={theme.lightGray} endColor={theme.lightGray}>
-        <Text style={styles.wallet}>{wallet?.address}</Text>
-        <Text style={styles.balance}>
-          {Web3.utils.fromWei(wallet?.tokens?.[0]?.balance as string, 'ether')}{' '}
-          ETH
-        </Text>
+        <Text style={styles.wallet}>{shortenAddress(walletAddress)}</Text>
+        <Text style={styles.balance}>{nativeBalance}</Text>
       </GradientCard>
     </View>
   );

@@ -26,7 +26,7 @@ export const MainStack = (): ReactElement => {
   }
 
   return (
-    <Stack.Navigator initialRouteName={isAuthenticated ? 'Root' : 'Auth'}>
+    <Stack.Navigator initialRouteName="Auth">
       <Stack.Screen
         name="Auth"
         options={{ headerShown: false }}

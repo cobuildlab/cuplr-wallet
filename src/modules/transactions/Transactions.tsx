@@ -1,16 +1,9 @@
-import React, { ReactElement, useState, useEffect } from 'react';
-import {
-  SafeAreaView,
-  View,
-  StatusBar,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
-import { useWalletConnect } from '@walletconnect/react-native-dapp';
+import React, { ReactElement } from 'react';
+import { SafeAreaView, View, StatusBar, StyleSheet } from 'react-native';
 
-import { Transaction } from '../../constants/types';
-import { getWalletTransactions } from '../../utils/api';
 import { TransactionsOverview } from './components/TransactionsOverview';
+
+import { useERC20Transfers } from '../../hooks';
 
 const styles = StyleSheet.create({
   container: {
@@ -30,40 +23,13 @@ const styles = StyleSheet.create({
   },
 });
 export const Transactions = (): ReactElement => {
-  const connector = useWalletConnect();
-  const [isLoading, setIsLoading] = useState(true);
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-  const loadTransactions = async (): Promise<void> => {
-    const walletTransactions = await getWalletTransactions(
-      connector.accounts[0],
-    );
-    setTransactions(walletTransactions);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    if (connector.connected) {
-      loadTransactions();
-    }
-  }, []);
-
-  if (isLoading) {
-    return (
-      <SafeAreaView>
-        <StatusBar barStyle="dark-content" />
-        <View style={styles.centeredContainer}>
-          <ActivityIndicator size="large" />
-        </View>
-      </SafeAreaView>
-    );
-  }
+  const { ERC20Transfers } = useERC20Transfers();
 
   return (
     <SafeAreaView>
       <StatusBar barStyle="dark-content" />
       <View style={styles.container}>
-        <TransactionsOverview transactions={transactions} />
+        <TransactionsOverview transactions={ERC20Transfers} />
       </View>
     </SafeAreaView>
   );

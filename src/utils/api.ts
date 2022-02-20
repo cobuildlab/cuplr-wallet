@@ -54,8 +54,8 @@ export const getTransactionMethod = async (
   }
 };
 
-export const getTransactionTimestamp = (timestamp: string): Date => {
-  return new Date(Number.parseInt(timestamp) * 1000);
+export const getTransactionTimestamp = (timestamp: string): string => {
+  return new Date(timestamp).toDateString();
 };
 
 export const getWalletTransactions = async (

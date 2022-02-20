@@ -1,12 +1,14 @@
 import React, { ReactElement } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { useMoralis } from 'react-moralis';
+import { faArrowRight, faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
+import { theme } from '../../../constants/theme';
 import { shortenAddress } from '../../../utils/helpers';
 import { getTransactionTimestamp } from '../../../utils/api';
-import { theme } from '../../../constants/theme';
-import { FontAwesome } from '@expo/vector-icons';
-import { useWalletConnect } from '@walletconnect/react-native-dapp';
-import Web3 from 'web3';
+
+import { useMoralisDapp } from '../../../providers/MoralisDappProvider/MoralisDappProvider';
 
 const styles = StyleSheet.create({
   container: {
@@ -65,39 +67,38 @@ const styles = StyleSheet.create({
 });
 
 export const TransactionCard = ({ transaction }): ReactElement => {
-  const connector = useWalletConnect();
+  const { Moralis } = useMoralis();
+  const { walletAddress } = useMoralisDapp();
+
   const isSending =
-    transaction.from.toLowerCase() === connector?.accounts?.[0]?.toLowerCase();
+    transaction.from_address.toLowerCase() === walletAddress.toLowerCase();
 
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
-        <FontAwesome name="handshake-o" style={styles.icon} />
+        <FontAwesomeIcon icon={faHandshake} style={styles.icon} />
       </View>
       <View style={styles.transactionContainer}>
         <View style={styles.row}>
           <Text style={styles.indicator}>{isSending ? 'To' : 'From'}</Text>
-          <FontAwesome name="arrow-right" style={styles.arrow} />
-          <Text style={styles.address}>{shortenAddress(transaction.to)}</Text>
+          <FontAwesomeIcon icon={faArrowRight} style={styles.arrow} size={12} />
+          <Text style={styles.address}>
+            {shortenAddress(transaction.to_address)}
+          </Text>
         </View>
-        <View style={styles.row}>
-          <Text style={styles.method}>{transaction.method}</Text>
-        </View>
+        {/* <View style={styles.row}>
+          <Text style={styles.method}>{transaction.}</Text>
+        </View> */}
         <View style={styles.row}>
           <Text style={styles.timestamp}>
-            {getTransactionTimestamp(
-              transaction.timestamp,
-            ).toLocaleDateString()}
+            {getTransactionTimestamp(transaction.block_timestamp)}
           </Text>
         </View>
       </View>
       <View style={styles.valueContainer}>
         <Text style={styles.value}>
           {isSending ? '-' : ''}
-          {Number.parseFloat(
-            Web3.utils.fromWei(transaction.value, 'ether'),
-          ).toFixed(4)}{' '}
-          ETH
+          {Moralis.Units.FromWei(transaction.value, 18).toFixed(3)}
         </Text>
       </View>
     </View>

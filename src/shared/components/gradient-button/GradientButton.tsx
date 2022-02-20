@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 import { Pressable, Text, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '../../../constants/theme';
 
 const styles = StyleSheet.create({

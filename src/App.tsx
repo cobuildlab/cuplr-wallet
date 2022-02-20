@@ -2,6 +2,7 @@
 import React, { ReactElement } from 'react';
 import { LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Providers } from './providers/Providers';
 
 import { AppNavigator } from './shared/navigation/AppNavigator';
 
@@ -15,7 +16,9 @@ LogBox.ignoreLogs(ignoredLogs);
 export const App = (): ReactElement => {
   return (
     <SafeAreaProvider>
-      <AppNavigator />
+      <Providers>
+        <AppNavigator />
+      </Providers>
     </SafeAreaProvider>
   );
 };

@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 
 import { TransactionCard } from './TransactionCard';
+
 import { theme } from '../../../constants/theme';
-import { Transaction } from '../../../constants/types';
 
 const styles = StyleSheet.create({
   title: {
@@ -40,11 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TransactionsOverview = ({
-  transactions,
-}: {
-  transactions: Transaction[];
-}): ReactElement => {
+export const TransactionsOverview = ({ transactions }): ReactElement => {
   return (
     <View>
       <FlatList
@@ -53,7 +49,7 @@ export const TransactionsOverview = ({
         style={styles.list}
         contentContainerStyle={styles.list}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        keyExtractor={({ hash }) => hash}
+        keyExtractor={({ block_hash }) => block_hash}
       />
     </View>
   );

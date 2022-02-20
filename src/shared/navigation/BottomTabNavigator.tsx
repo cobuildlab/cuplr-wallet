@@ -1,7 +1,8 @@
 /* eslint-disable indent  */
 import React, { ReactElement } from 'react';
-import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faHistory, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 
 import { Dashboard } from '../../modules/dashboard/Dashboard';
 import { Transactions } from '../../modules/transactions/Transactions';
@@ -9,10 +10,9 @@ import { theme } from '../../constants/theme';
 
 const Bottom = createBottomTabNavigator();
 
-const getIcon =
-  (name) =>
-  ({ color, ...rest }) =>
-    <FontAwesome name={name} color={color} {...rest} />;
+const getIcon = (icon) => ({ color, ...rest }) => (
+  <FontAwesomeIcon icon={icon} color={color} {...rest} />
+);
 
 export const BottomTab = (): ReactElement => {
   return (
@@ -32,7 +32,7 @@ export const BottomTab = (): ReactElement => {
         options={{
           title: 'Dashboard',
           headerShown: false,
-          tabBarIcon: getIcon('credit-card'),
+          tabBarIcon: getIcon(faCreditCard),
         }}
       />
       <Bottom.Screen
@@ -41,7 +41,7 @@ export const BottomTab = (): ReactElement => {
         options={{
           title: 'Transactions',
           headerShown: false,
-          tabBarIcon: getIcon('history'),
+          tabBarIcon: getIcon(faHistory),
         }}
       />
     </Bottom.Navigator>

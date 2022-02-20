@@ -1,8 +1,11 @@
 import React, { ReactElement, useEffect } from 'react';
 import { SafeAreaView, View, Image, StatusBar, StyleSheet } from 'react-native';
-import { useWalletConnect } from '@walletconnect/react-native-dapp';
+import { useMoralis } from 'react-moralis';
+
 import { IconButton } from '../../shared/components/icon-button/IconButton';
+
 import { useNavigator } from '../../hooks';
+import { useWalletConnect } from '../../lib/WalletConnect';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,11 +25,21 @@ export const Auth = ({ navigation }): ReactElement => {
   const connector = useWalletConnect();
   const navigator = useNavigator(navigation);
 
+  const { authenticate, isAuthenticating, isAuthenticated } = useMoralis();
+
   useEffect(() => {
-    if (connector.connected) {
+    if (isAuthenticated) {
       navigator.resetAndNavigateTo('Root');
     }
-  }, [connector.connected]);
+  }, [isAuthenticated]);
+
+  const connect = () => {
+    navigator.resetAndNavigateTo('Root');
+
+    // authenticate({connector})
+    //   .then(() => navigator.resetAndNavigateTo('Root'))
+    //   .catch(e => console.log(e));
+  };
 
   return (
     <SafeAreaView>
@@ -38,7 +51,7 @@ export const Auth = ({ navigation }): ReactElement => {
         />
         <IconButton
           icon={require('../../../assets/images/walletconnect.png')}
-          onPress={() => connector.connect()}
+          onPress={() => connect()}
           title="Use WalletConnect"
         />
       </View>

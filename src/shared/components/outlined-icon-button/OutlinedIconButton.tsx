@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { theme } from '../../../constants/theme';
 
 const styles = StyleSheet.create({
@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     height: 64,
     borderWidth: 2,
     borderRadius: 16,
+    color: theme.black,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     borderColor: theme.gray,
   },
   icon: {
-    fontSize: 32,
+    color: theme.black,
   },
   disabledIcon: {
     color: theme.gray,
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
 
 export const OutlinedIconButton = ({
   onPress,
-  name,
+  icon,
   disabled = false,
 }): ReactElement => {
   let outlineStyles = { ...styles.outline };
@@ -38,7 +39,7 @@ export const OutlinedIconButton = ({
 
   return (
     <Pressable style={outlineStyles} onPress={onPress} disabled={disabled}>
-      <FontAwesome name={name} style={iconStyle} />
+      <FontAwesomeIcon icon={icon} style={iconStyle} size={24} />
     </Pressable>
   );
 };
