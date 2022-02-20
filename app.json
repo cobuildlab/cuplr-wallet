@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "test-dapp",
-    "slug": "test-dapp",
+    "name": "cuplr-wallet",
+    "slug": "cuplr-wallet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
