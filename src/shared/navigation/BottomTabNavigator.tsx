@@ -2,9 +2,14 @@
 import React, { ReactElement } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHistory, faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHistory,
+  faCreditCard,
+  faPaperPlane,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { Dashboard } from '../../modules/dashboard/Dashboard';
+import { Send } from '../../modules/send/Send';
 import { Transactions } from '../../modules/transactions/Transactions';
 import { theme } from '../../constants/theme';
 
@@ -33,6 +38,15 @@ export const BottomTab = (): ReactElement => {
           title: 'Dashboard',
           headerShown: false,
           tabBarIcon: getIcon(faCreditCard),
+        }}
+      />
+      <Bottom.Screen
+        name="Send"
+        component={Send}
+        options={{
+          title: 'Send',
+          headerShown: false,
+          tabBarIcon: getIcon(faPaperPlane),
         }}
       />
       <Bottom.Screen

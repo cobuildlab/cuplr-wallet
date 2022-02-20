@@ -42,7 +42,10 @@ export const Dashboard = ({ navigation }): ReactElement => {
       <IconHeader />
       <View style={styles.container}>
         <WalletOverview />
-        <ActionButtons onHistory={() => navigator.navigate('Transactions')} />
+        <ActionButtons
+          onSend={() => navigator.navigate('Send')}
+          onHistory={() => navigator.navigate('Transactions')}
+        />
         <GradientButton
           title="Disconnect wallet"
           onPress={() => disconnect()}

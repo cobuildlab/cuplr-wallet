@@ -15,11 +15,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ActionButtons = ({ onHistory }): ReactElement => {
+export const ActionButtons = ({ onSend, onHistory }): ReactElement => {
   return (
     <View style={styles.container}>
       <OutlinedIconButton icon={faCreditCard} onPress={() => {}} disabled />
-      <OutlinedIconButton icon={faPaperPlane} onPress={() => {}} disabled />
+      <OutlinedIconButton icon={faPaperPlane} onPress={onSend} />
       <OutlinedIconButton icon={faHistory} onPress={onHistory} />
     </View>
   );

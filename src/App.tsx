@@ -9,6 +9,8 @@ import { AppNavigator } from './shared/navigation/AppNavigator';
 const ignoredLogs = [
   "The provided value 'moz",
   "The provided value 'ms-stream",
+  'Require cycle',
+  'Non-ethereum',
 ];
 
 LogBox.ignoreLogs(ignoredLogs);
