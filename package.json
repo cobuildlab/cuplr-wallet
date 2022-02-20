@@ -71,6 +71,7 @@
     "rn-nodeify": "^10.3.0",
     "stream-browserify": "^1.0.0",
     "url": "~0.10.1",
+    "uuid": "^8.3.2",
     "web3": "^1.6.1"
   },
   "devDependencies": {
@@ -80,6 +81,7 @@
     "@types/node": "14.14.22",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^5.12.0",
     "app-root-path": "3.0.0",

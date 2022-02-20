@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { useMoralis } from 'react-moralis';
-import { faArrowRight, faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import { theme } from '../../../constants/theme';
@@ -36,7 +36,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: theme.gray,
   },
+  iconSending: {
+    transform: [{ rotate: '45deg' }],
+  },
+  iconReceiving: {
+    transform: [{ rotate: '225deg' }],
+  },
   indicator: {
+    marginTop: 2,
+    marginRight: 4,
     fontWeight: '600',
     color: theme.gray,
   },
@@ -73,17 +81,24 @@ export const TransactionCard = ({ transaction }): ReactElement => {
   const isSending =
     transaction.from_address.toLowerCase() === walletAddress.toLowerCase();
 
+  const iconStyles = isSending ? styles.iconSending : styles.iconReceiving;
+
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
-        <FontAwesomeIcon icon={faHandshake} style={styles.icon} />
+        <FontAwesomeIcon
+          icon={faArrowUp}
+          style={{ ...styles.icon, ...iconStyles }}
+          size={16}
+        />
       </View>
       <View style={styles.transactionContainer}>
         <View style={styles.row}>
           <Text style={styles.indicator}>{isSending ? 'To' : 'From'}</Text>
-          <FontAwesomeIcon icon={faArrowRight} style={styles.arrow} size={12} />
           <Text style={styles.address}>
-            {shortenAddress(transaction.to_address)}
+            {shortenAddress(
+              isSending ? transaction.to_address : transaction.from_address,
+            )}
           </Text>
         </View>
         {/* <View style={styles.row}>

@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { v4 } from 'uuid';
 import { View, FlatList, StyleSheet } from 'react-native';
 
 import { TransactionCard } from './TransactionCard';
@@ -49,7 +50,8 @@ export const TransactionsOverview = ({ transactions }): ReactElement => {
         style={styles.list}
         contentContainerStyle={styles.list}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        keyExtractor={({ block_hash }) => block_hash}
+        keyExtractor={() => v4()}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
