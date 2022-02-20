@@ -31,7 +31,7 @@ export const Dashboard = ({ navigation }): ReactElement => {
 
   const { logout } = useMoralis();
 
-  const disconnect = () => {
+  const disconnect = (): void => {
     logout();
     navigator.resetAndNavigateTo('Auth');
   };
