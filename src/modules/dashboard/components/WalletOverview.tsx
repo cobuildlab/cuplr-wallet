@@ -8,16 +8,23 @@ import { useMoralisDapp } from '../../../providers/MoralisDappProvider/MoralisDa
 import { useNativeBalance } from '../../../hooks';
 
 import { theme } from '../../../constants/theme';
+import { Blockie } from '../../../shared/components/blockie/Blockie';
 
 const styles = StyleSheet.create({
   container: {
     marginBottom: 32,
+    alignItems: 'center',
+  },
+  blockie: {
+    width: 56,
+    height: 56,
+    borderRadius: 12,
   },
   wallet: {
     fontSize: 16,
     fontWeight: '600',
-    marginTop: 16,
-    marginBottom: 16,
+    marginTop: 32,
+    marginBottom: 32,
     color: theme.gray,
   },
   balance: {
@@ -33,10 +40,9 @@ export const WalletOverview = (): ReactElement => {
 
   return (
     <View style={styles.container}>
-      <GradientCard startColor={theme.lightGray} endColor={theme.lightGray}>
-        <Text style={styles.wallet}>{shortenAddress(walletAddress)}</Text>
-        <Text style={styles.balance}>{nativeBalance}</Text>
-      </GradientCard>
+      <Blockie style={styles.blockie} seed={walletAddress} />
+      <Text style={styles.wallet}>{shortenAddress(walletAddress)}</Text>
+      <Text style={styles.balance}>{nativeBalance}</Text>
     </View>
   );
 };

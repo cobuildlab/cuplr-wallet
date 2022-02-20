@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   iconContainer: {
-    width: '15%',
+    width: '20%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   transactionContainer: {
-    width: '50%',
+    width: '45%',
   },
   icon: {
     fontSize: 16,
@@ -66,6 +66,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
   },
+  topRow: {
+    marginBottom: 4,
+  },
   arrow: {
     marginTop: 2,
     marginLeft: 8,
@@ -93,7 +96,7 @@ export const TransactionCard = ({ transaction }): ReactElement => {
         />
       </View>
       <View style={styles.transactionContainer}>
-        <View style={styles.row}>
+        <View style={[styles.row, styles.topRow]}>
           <Text style={styles.indicator}>{isSending ? 'To' : 'From'}</Text>
           <Text style={styles.address}>
             {shortenAddress(
@@ -101,9 +104,6 @@ export const TransactionCard = ({ transaction }): ReactElement => {
             )}
           </Text>
         </View>
-        {/* <View style={styles.row}>
-          <Text style={styles.method}>{transaction.}</Text>
-        </View> */}
         <View style={styles.row}>
           <Text style={styles.timestamp}>
             {getTransactionTimestamp(transaction.block_timestamp)}

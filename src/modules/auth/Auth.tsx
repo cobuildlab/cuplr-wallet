@@ -25,7 +25,7 @@ export const Auth = ({ navigation }): ReactElement => {
   const connector = useWalletConnect();
   const navigator = useNavigator(navigation);
 
-  const { authenticate, isAuthenticating, isAuthenticated } = useMoralis();
+  const { authenticate, isAuthenticated } = useMoralis();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -33,12 +33,14 @@ export const Auth = ({ navigation }): ReactElement => {
     }
   }, [isAuthenticated]);
 
-  const connect = () => {
-    navigator.resetAndNavigateTo('Root');
-
-    // authenticate({connector})
-    //   .then(() => navigator.resetAndNavigateTo('Root'))
-    //   .catch(e => console.log(e));
+  const connect = (): void => {
+    authenticate({ connector })
+      .then(() => {
+        if (isAuthenticated) {
+          navigator.resetAndNavigateTo('Root');
+        }
+      })
+      .catch((e) => console.log(e));
   };
 
   return (

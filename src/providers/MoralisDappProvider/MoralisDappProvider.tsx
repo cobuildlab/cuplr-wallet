@@ -31,18 +31,18 @@ function MoralisDappProvider({ children }) {
 
   return (
     // USE THIS TO SKIP LOGIN THROUGH WALLET (FOR DEVELOPMENT PURPOSES)
-    <MoralisDappContext.Provider
-      value={{
-        walletAddress: '0xb31afE4Edf11168e90E60d8778F5556Ef222f2E9',
-        chainId: '0x38',
-      }}>
-      {children}
-    </MoralisDappContext.Provider>
-
-    //USE THIS DURING PRODUCTION
-    // <MoralisDappContext.Provider value={{walletAddress, chainId: '0x1'}}>
+    // <MoralisDappContext.Provider
+    //   value={{
+    //     walletAddress: '0xb31afE4Edf11168e90E60d8778F5556Ef222f2E9',
+    //     chainId: '0x38',
+    //   }}>
     //   {children}
     // </MoralisDappContext.Provider>
+
+    //USE THIS DURING PRODUCTION
+    <MoralisDappContext.Provider value={{ walletAddress, chainId: '0x38' }}>
+      {children}
+    </MoralisDappContext.Provider>
   );
 }
 

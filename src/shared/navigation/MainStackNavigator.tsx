@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { BottomTab } from './BottomTabNavigator';
 import { Auth } from '../../modules/auth/Auth';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
+import { Assets } from '../../modules/assets/Assets';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,11 @@ export const MainStack = (): ReactElement => {
         name="Root"
         options={{ headerShown: false }}
         component={BottomTab}
+      />
+      <Stack.Screen
+        name="Assets"
+        options={{ headerShown: false }}
+        component={Assets}
       />
     </Stack.Navigator>
   );

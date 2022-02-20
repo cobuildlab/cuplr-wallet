@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
 });
+
 export const Transactions = (): ReactElement => {
   const { ERC20Transfers } = useERC20Transfers();
 
