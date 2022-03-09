@@ -126,6 +126,12 @@
       {
         "extensions": [".ts", ".tsx"]
       }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
     ]
   },
   "overrides": [

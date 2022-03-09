@@ -3,6 +3,7 @@ import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 
 import { MainStack } from './MainStackNavigator';
 import { theme } from '../../constants/theme';
+import { linking } from '../../linking';
 
 export const AppNavigator = (): ReactElement => {
   const navigationTheme = {
@@ -14,7 +15,7 @@ export const AppNavigator = (): ReactElement => {
   };
 
   return (
-    <NavigationContainer theme={navigationTheme}>
+    <NavigationContainer theme={navigationTheme} linking={linking}>
       <MainStack />
     </NavigationContainer>
   );
